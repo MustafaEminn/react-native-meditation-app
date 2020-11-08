@@ -28,6 +28,7 @@ const ButtonC = ({ bColor, tColor, tContent, mt, onPress }: any) => {
             justifyContent: "center",
             alignItems: "center",
             marginTop: mt,
+            alignSelf: "center",
           }}
           onPress={onPress}
           activeOpacity={0.9}

@@ -73,7 +73,7 @@ const GetStarted = ({ navigation }: any) => {
             tContent={"SIGN UP"}
             mt={hp("9%")}
             onPress={() => {
-              navigation.navigate("Login");
+              navigation.navigate("Register");
             }}
           />
           <TouchableOpacity

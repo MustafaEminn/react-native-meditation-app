@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Keyboard, Animated, Easing } from "react-native";
+import { View, Text, Keyboard, Easing, Animated } from "react-native";
 import InBack from "../assets/images/inBack";
 import { colors } from "../styles/globalStyles";
 import Constants from "expo-constants";
@@ -13,6 +13,7 @@ import {
 
 import {
   TextInput,
+  TouchableNativeFeedback,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
@@ -21,6 +22,7 @@ import Loading from "./Loading";
 import ContinueGoogleButton from "../components/ContinueGoogleButton";
 import ContinueFacebookButton from "../components/ContinueFacebookButton";
 import ButtonC from "../components/ButtonC";
+import Eye from "../assets/images/Eye";
 
 const SignUp = ({ navigation }: any) => {
   let [fontsLoaded] = useFonts({
@@ -30,6 +32,7 @@ const SignUp = ({ navigation }: any) => {
   });
 
   const [keyboard, setKeyboard]: any = React.useState(false);
+  const [passShow, setPassShow]: any = React.useState(false);
 
   React.useEffect(() => {
     Keyboard.addListener("keyboardDidShow", keyboardHandlerOpen);
@@ -43,20 +46,20 @@ const SignUp = ({ navigation }: any) => {
   const y: any = React.useRef(new Animated.Value(0)).current;
 
   const keyboardHandlerOpen = () => {
-    setKeyboard(true);
     Animated.timing(y, {
-      toValue: hp("-5%"),
-      duration: 100,
+      toValue: hp("-2%"),
+      duration: 700,
       useNativeDriver: true,
     }).start();
+    setKeyboard(true);
   };
   const keyboardHandlerClose = () => {
-    setKeyboard(false);
     Animated.timing(y, {
       toValue: 0,
       duration: 100,
       useNativeDriver: true,
     }).start();
+    setKeyboard(false);
   };
 
   if (!fontsLoaded) {
@@ -109,9 +112,13 @@ const SignUp = ({ navigation }: any) => {
             color: colors.black3F4,
           }}
         >
-          Welcome Back!
+          Create your account
         </Text>
-        <View style={{ display: keyboard ? "none" : "flex" }}>
+        <View
+          style={{
+            display: keyboard ? "none" : "flex",
+          }}
+        >
           <ContinueFacebookButton />
           <ContinueGoogleButton />
 
@@ -123,13 +130,26 @@ const SignUp = ({ navigation }: any) => {
               color: colors.grayA1A,
             }}
           >
-            OR LOG IN WITH EMAIL
+            OR REGISTER IN WITH EMAIL
           </Text>
         </View>
 
         <Animated.View
           style={{ transform: [{ translateY: y }], alignItems: "center" }}
         >
+          <TextInput
+            placeholder="Name"
+            placeholderTextColor={colors.grayA1A}
+            style={{
+              width: wp("88.9%"),
+              height: hp("7.4%"),
+              backgroundColor: colors.grayF2F,
+              marginTop: hp("3.3%"),
+              borderRadius: wp("4%"),
+              paddingLeft: wp("5.4%"),
+              color: colors.black3F4,
+            }}
+          />
           <TextInput
             placeholder="Email address"
             placeholderTextColor={colors.grayA1A}
@@ -138,55 +158,50 @@ const SignUp = ({ navigation }: any) => {
               width: wp("88.9%"),
               height: hp("7.4%"),
               backgroundColor: colors.grayF2F,
-              marginTop: hp("6.6%"),
-              borderRadius: wp("4%"),
-              paddingLeft: wp("5.4%"),
-            }}
-          />
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor={colors.grayA1A}
-            secureTextEntry={true}
-            style={{
-              width: wp("88.9%"),
-              height: hp("7.4%"),
-              backgroundColor: colors.grayF2F,
               marginTop: hp("3.3%"),
               borderRadius: wp("4%"),
               paddingLeft: wp("5.4%"),
+              color: colors.black3F4,
             }}
           />
+          <View style={{ flexDirection: "row" }}>
+            <TextInput
+              placeholder="Password"
+              placeholderTextColor={colors.grayA1A}
+              secureTextEntry={passShow ? false : true}
+              style={{
+                width: wp("88.9%"),
+                height: hp("7.4%"),
+                backgroundColor: colors.grayF2F,
+                marginTop: hp("3.3%"),
+                borderRadius: wp("4%"),
+                paddingLeft: wp("5.4%"),
+                color: colors.black3F4,
+              }}
+            />
+            <Eye
+              width={wp("5.8%")}
+              height={hp("1.5%")}
+              style={{
+                position: "absolute",
+                right: wp("3%"),
+                bottom: hp("2.5%"),
+              }}
+              onPress={() => setPassShow(!passShow)}
+              color={passShow ? colors.blue8E9 : colors.black3F4}
+              hitSlop={{ left: 20, top: 20, right: 20, bottom: 20 }}
+            />
+          </View>
           <ButtonC
             mt={hp("5%")}
             bColor={colors.blue8E9}
             tColor={colors.whiteFFF}
-            tContent={"LOG IN"}
+            tContent={"GET STARTED"}
             onPress={() => {
               navigation.navigate("AfterGetStarted");
             }}
           />
         </Animated.View>
-
-        <Text
-          style={{
-            fontFamily: "Roboto400",
-            color: colors.black3F4,
-            alignSelf: "center",
-          }}
-        >
-          Forgot Password?
-        </Text>
-
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={{ alignSelf: "center", marginTop: hp("3%") }}
-          onPress={() => navigation.navigate("Register")}
-        >
-          <Text style={{ color: colors.grayA1A, fontFamily: "Roboto400" }}>
-            ALREADY HAVE AN ACCOUNT?
-            <Text style={{ color: colors.blue8E9 }}> SIGN UP</Text>
-          </Text>
-        </TouchableOpacity>
 
         <StatusBar backgroundColor={colors.whiteFFF} />
       </View>
