@@ -1,13 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import GetStarted from "../pages/GetStarted";
 import { createStackNavigator } from "@react-navigation/stack";
-import Loading from "../pages/Loading";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AfterGetStarted from "../pages/AfterGetStarted";
 import ChooseTopic from "../pages/ChooseTopic";
+import Home from "../pages/Home";
+import Relax from "../pages/Relax";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +38,16 @@ const NavigationStack = () => {
         <Stack.Screen
           name="ChooseTopic"
           component={ChooseTopic}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Relax"
+          component={Relax}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

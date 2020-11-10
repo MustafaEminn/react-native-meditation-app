@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Keyboard, Animated, Easing } from "react-native";
+import { View, Text, Keyboard, Animated } from "react-native";
 import InBack from "../assets/images/inBack";
 import { colors } from "../styles/globalStyles";
 import Constants from "expo-constants";

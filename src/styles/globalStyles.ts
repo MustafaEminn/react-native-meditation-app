@@ -9,4 +9,8 @@ export const colors = {
   blue758: "#7583CA",
   grayF2F: "#F2F3F7",
   whiteFEF: "#FEF9F3",
+  whiteFFE: "#FFECCC",
+  yellowFFC: "#FFC97E",
+  blue333: "#333242",
+  grayA0A: "#A0A3B1",
 };

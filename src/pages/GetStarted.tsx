@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, Image, PixelRatio, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import LogoNormal from "../components/LogoNormal";
 import Constants from "expo-constants";
 import { TouchableOpacity } from "react-native-gesture-handler";

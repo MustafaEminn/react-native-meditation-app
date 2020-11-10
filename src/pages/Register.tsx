@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Keyboard, Easing, Animated } from "react-native";
+import { View, Text, Keyboard, Animated } from "react-native";
 import InBack from "../assets/images/inBack";
 import { colors } from "../styles/globalStyles";
 import Constants from "expo-constants";
@@ -13,8 +13,6 @@ import {
 
 import {
   TextInput,
-  TouchableNativeFeedback,
-  TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
 import { useFonts } from "expo-font";

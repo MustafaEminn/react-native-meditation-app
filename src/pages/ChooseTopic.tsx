@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image } from "react-native";
 
 import Constants from "expo-constants";
 
@@ -12,16 +12,11 @@ import { StatusBar } from "expo-status-bar";
 import { colors } from "../styles/globalStyles";
 import ChooseBubble from "../assets/images/ChooseBubble";
 import Loading from "./Loading";
-import {
-  ScrollView,
-  TouchableHighlight,
-  TouchableNativeFeedback,
-  TouchableWithoutFeedback,
-} from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 import { ChooseDatas } from "../global/data";
 
-const ChooseTopic = () => {
+const ChooseTopic = ({ navigation }: any) => {
   let [fontsLoaded] = useFonts({
     Roboto100: require("../assets/fonts/Roboto-Thin.ttf"),
     Roboto300: require("../assets/fonts/Roboto-Light.ttf"),
@@ -51,56 +46,60 @@ const ChooseTopic = () => {
           flex: 1,
         }}
       >
-        <Text
-          style={{
-            fontFamily: "Roboto700",
-            fontSize: wp("7.6%"),
-            lineHeight: hp("6.3%"),
-            marginTop: hp("12.6%"),
-            marginLeft: wp("5.4%"),
-            color: colors.black3F4,
-          }}
-        >
-          What Brings you
-        </Text>
-        <Text
-          style={{
-            fontFamily: "Roboto300",
-            fontSize: wp("7.6%"),
-            lineHeight: hp("6.3%"),
-            marginLeft: wp("5.4%"),
-            color: colors.black3F4,
-          }}
-        >
-          to Silent Moon?
-        </Text>
+        <View>
+          <Text
+            style={{
+              fontFamily: "Roboto700",
+              fontSize: wp("7.6%"),
+              lineHeight: hp("6.3%"),
+              marginTop: hp("12.6%"),
+              marginLeft: wp("5.4%"),
+              color: colors.black3F4,
+            }}
+          >
+            What Brings you
+          </Text>
+          <Text
+            style={{
+              fontFamily: "Roboto300",
+              fontSize: wp("7.6%"),
+              lineHeight: hp("6.3%"),
+              marginLeft: wp("5.4%"),
+              color: colors.black3F4,
+            }}
+          >
+            to Silent Moon?
+          </Text>
 
-        <Text
-          style={{
-            fontFamily: "Roboto300",
-            fontSize: wp("5.4%"),
-            lineHeight: hp("3.8%"),
-            marginTop: hp("1.6%"),
-            marginLeft: wp("5.4%"),
-            color: colors.grayA1A,
-          }}
-        >
-          choose a topic to focuse on:
-        </Text>
+          <Text
+            style={{
+              fontFamily: "Roboto300",
+              fontSize: wp("5.4%"),
+              lineHeight: hp("3.8%"),
+              marginTop: hp("1.6%"),
+              marginLeft: wp("5.4%"),
+              color: colors.grayA1A,
+            }}
+          >
+            choose a topic to focuse on:
+          </Text>
+        </View>
 
         <ScrollView
           style={{
             width: wp("100%"),
             marginTop: hp("5%"),
-            position: "relative",
+            zIndex: 5,
           }}
           showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps={"handled"}
         >
           <View
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
               flex: 1,
+              zIndex: 20,
             }}
           >
             {ChooseDatas.map((item, i) => {
@@ -112,41 +111,36 @@ const ChooseTopic = () => {
                     height: item.large ? hp("35%") : hp("27.8%"),
                     marginLeft: wp("4%"),
                     marginTop: mt,
-                    borderRadius: 20,
-                    zIndex: 1,
-                    backgroundColor: "blue",
                   }}
                   onPress={() => {
-                    console.log("dokund");
+                    navigation.navigate("Home");
                   }}
                   key={i}
-                  disabled={true}
+                  activeOpacity={0.9}
                 >
-                  <View>
-                    <Image
-                      resizeMode="cover"
-                      style={{
-                        width: wp("44%"),
-                        height: item.large ? hp("35%") : hp("27.8%"),
-                      }}
-                      source={item.image}
-                      borderRadius={20}
-                    />
-                    <Text
-                      style={{
-                        elevation: 2,
-                        position: "absolute",
-                        bottom: hp("3.3%"),
-                        marginLeft: wp("4%"),
-                        lineHeight: hp("4%"),
-                        fontSize: wp("4.9%"),
-                        fontFamily: "Roboto700",
-                        color: colors.whiteFEF,
-                      }}
-                    >
-                      {item.text}
-                    </Text>
-                  </View>
+                  <Image
+                    resizeMode="cover"
+                    style={{
+                      width: wp("44%"),
+                      height: item.large ? hp("35%") : hp("27.8%"),
+                    }}
+                    source={item.image}
+                    borderRadius={20}
+                  />
+                  <Text
+                    style={{
+                      elevation: 2,
+                      position: "absolute",
+                      bottom: hp("3.3%"),
+                      marginLeft: wp("4%"),
+                      lineHeight: hp("4%"),
+                      fontSize: wp("4.9%"),
+                      fontFamily: "Roboto700",
+                      color: colors.whiteFEF,
+                    }}
+                  >
+                    {item.text}
+                  </Text>
                 </TouchableOpacity>
               );
             })}
