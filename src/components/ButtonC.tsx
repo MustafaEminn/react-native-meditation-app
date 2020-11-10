@@ -43,7 +43,6 @@ const ButtonC = ({ bColor, tColor, tContent, mt, onPress }: any) => {
             {tContent}
           </Text>
         </TouchableOpacity>
-        <Text></Text>
       </React.Fragment>
     );
   }
